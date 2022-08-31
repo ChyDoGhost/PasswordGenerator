@@ -22,7 +22,48 @@ namespace PasswordGenerator
         public MainWindow()
         {
             InitializeComponent();
+
         }
-                
+
+        public string Generate()
+        {
+            string word = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string number = "123456789";
+            string symbol = "!@#№;$%:^?&*()_-+=[]{}\\|/.<>,";
+
+            var random = new Random();
+            var stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < SliderWord.Value; i++)
+                stringBuilder.Insert(random.Next(0, stringBuilder.Length), word[random.Next(0, word.Length)]);
+
+            for (int i = 0; i < SliderNumber.Value; i++)
+                stringBuilder.Insert(random.Next(0, stringBuilder.Length), number[random.Next(0, number.Length)]);
+
+            for (int i = 0; i < SliderSymbol.Value; i++)
+                stringBuilder.Insert(random.Next(0, stringBuilder.Length), symbol[random.Next(0, symbol.Length)]);
+
+            return stringBuilder.ToString();
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider1TextBlock1.Text = ((int)SliderSymbol.Value).ToString();
+            Slider2TextBlock1.Text = ((int)SliderWord.Value).ToString();
+            Slider3TextBlock1.Text = ((int)SliderNumber.Value).ToString();
+            Slider1TextBlock.Text = ((int)SliderSymbol.Value + (int)SliderWord.Value + (int)SliderNumber.Value).ToString();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            string password = Generate();
+            TextBlockPassword.Text = password;
+            if (((int)SliderSymbol.Value > 0) || ((int)SliderWord.Value > 0) || ((int)SliderNumber.Value > 0))
+            {
+                Clipboard.SetText(password);
+                TextBlockPasswordCopied.Text = "*Пароль скопирован в буфер обмена";
+            }
+        }
+
     }
 }
