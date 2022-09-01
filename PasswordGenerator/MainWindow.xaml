@@ -50,7 +50,7 @@
 
         <TextBlock x:Name="TextBlockPassword" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <TextBlock Button.Click="button1_Click" x:Name="TextBlockPasswordCopied" Text="" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" FontWeight="Bold">
+        <!--<TextBlock Button.Click="button1_Click" x:Name="TextBlockPasswordCopied" Text="" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" FontWeight="Bold">
             <TextBlock.Triggers>
                 <EventTrigger RoutedEvent="TextBlock.Loaded">
                     <BeginStoryboard>
@@ -64,7 +64,7 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </TextBlock.Triggers>
-        </TextBlock>
+        </TextBlock>-->
 
         <Button x:Name="button1" Click="button1_Click" Grid.Column="1" Grid.Row="3" Margin="25" Content="Сгенерировать"/>
 

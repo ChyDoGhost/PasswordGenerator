@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace PasswordGenerator
 {
@@ -24,7 +25,10 @@ namespace PasswordGenerator
             InitializeComponent();
 
         }
-
+        /// <summary>
+        /// Генерирование пароля на основе значений со слайдера
+        /// </summary>
+        /// <returns>Сгенерированный пароль</returns>
         public string Generate()
         {
             string word = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -45,7 +49,11 @@ namespace PasswordGenerator
 
             return stringBuilder.ToString();
         }
-
+        /// <summary>
+        /// Вывод значений со слайдера в текст блок
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Slider1TextBlock1.Text = ((int)SliderSymbol.Value).ToString();
@@ -56,12 +64,18 @@ namespace PasswordGenerator
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            //Генерирование пароля
             string password = Generate();
             TextBlockPassword.Text = password;
             if (((int)SliderSymbol.Value > 0) || ((int)SliderWord.Value > 0) || ((int)SliderNumber.Value > 0))
             {
+                //Копирование пароля в буфер обмена
                 Clipboard.SetText(password);
-                TextBlockPasswordCopied.Text = "*Пароль скопирован в буфер обмена";
+                //TextBlockPasswordCopied.Text = "*Пароль скопирован в буфер обмена";
+
+                ToastContentBuilder toastContentBuilder = new ToastContentBuilder();
+                toastContentBuilder.AddText("Пароль скопирован в буфер обмена");
+                toastContentBuilder.Show();
             }
         }
 
