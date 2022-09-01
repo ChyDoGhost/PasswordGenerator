@@ -71,13 +71,26 @@ namespace PasswordGenerator
             {
                 //Копирование пароля в буфер обмена
                 Clipboard.SetText(password);
-                //TextBlockPasswordCopied.Text = "*Пароль скопирован в буфер обмена";
 
                 ToastContentBuilder toastContentBuilder = new ToastContentBuilder();
                 toastContentBuilder.AddText("Пароль скопирован в буфер обмена");
+                toastContentBuilder.AddAttributionText("Вставьте его с помощью сочетания клавиш Cntl + V");
                 toastContentBuilder.Show();
             }
         }
+        private void MenuItem_RollUp_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
 
+        private void MenuItem_Close_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void TaskbarIcon_TrayLeftMouseDown(object sender, RoutedEventArgs e)
+        {
+            this.Show();
+        }
     }
 }
