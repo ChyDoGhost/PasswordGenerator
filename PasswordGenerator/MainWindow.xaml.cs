@@ -74,7 +74,7 @@ namespace PasswordGenerator
 
                 ToastContentBuilder toastContentBuilder = new ToastContentBuilder();
                 toastContentBuilder.AddText("Пароль скопирован в буфер обмена");
-                toastContentBuilder.AddAttributionText("Вставьте его с помощью сочетания клавиш Cntl + V");
+                toastContentBuilder.AddAttributionText("Вставьте его с помощью сочетания клавиш CTRL + V");
                 toastContentBuilder.Show();
             }
         }
